@@ -22,9 +22,10 @@ namespace Typeahead.WebApi.Controllers
             _repository = repository;
         }
 
-        [HttpGet("{filter}", Name = "GetFilteredTerms")]
+        [HttpGet("{filter:minlength(3):maxlength(50)}", Name = "GetFilteredTerms")]
         [ProducesHttpStatusCode(HttpStatusCode.OK)]
         [ProducesHttpStatusCode(HttpStatusCode.NotFound)]
+        [ProducesHttpStatusCode(HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Get(string filter)
         {
             _logger.LogDebug("Get filtered terms by {filter}", filter);

@@ -24,6 +24,7 @@ namespace Typeahead.WebApi.Controllers
 
         [HttpPost(Name = "WeightIncrease")]
         [ProducesHttpStatusCode(HttpStatusCode.NoContent)]
+        [ProducesHttpStatusCode(HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Post([FromBody] WeightInput weightInput)
         {
             _logger.LogDebug("Weight increase for term with id = {termId}", weightInput.TermId);

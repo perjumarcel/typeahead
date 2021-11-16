@@ -1,8 +1,8 @@
 CREATE TABLE Terms
 (
     Id INT PRIMARY KEY IDENTITY(1,1), 
-    [Name] NVARCHAR (50) NOT NULL, -- biggest world word length is 45
-    CONSTRAINT Terms_Name_CK CHECK (LEN([Name]) >= 3), -- as the search input requires minimun length of 3, having terms shorter then it is useless as it will not be displayed.
+    [Name] NVARCHAR (50) NOT NULL,
+    CONSTRAINT Terms_Name_CK CHECK (LEN([Name]) >= 3),
     CONSTRAINT AK_Name UNIQUE([Name])
 )
 

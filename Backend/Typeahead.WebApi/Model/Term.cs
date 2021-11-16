@@ -1,4 +1,4 @@
-﻿namespace Typeahead.WebApi
+﻿namespace Typeahead.WebApi.Model
 {
     public class Term
     {

@@ -15,6 +15,8 @@ namespace Typeahead.WebApi.IntTests
 {
     public class WeightControllerTests : IntegrationTestsBase<Startup>
     {
+        private TestTermsRepository _repository;
+
         [Theory]
         [InlineData(5, "mic")]
         [InlineData(2, "mic")]
@@ -23,12 +25,12 @@ namespace Typeahead.WebApi.IntTests
         [InlineData(3, "micr")]
         public async Task IncreaseWeightNoContent(int termId, string input)
         {
-            var currentWeight = await WeightCount(termId, input);
+            var currentWeight = await _repository.GetWeight(termId, input);
 
             var response = await PostAsJsonAsync(termId, input);
             response.StatusCode.Should().Be(HttpStatusCode.NoContent);
 
-            var newWeight = await WeightCount(termId, input);
+            var newWeight = await _repository.GetWeight(termId, input);
             newWeight.Count.Should().Be(currentWeight.Count + 1);
         }
 
@@ -47,7 +49,7 @@ namespace Typeahead.WebApi.IntTests
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
-        private async Task<Weight> WeightCount(int termId, string input)
+        public override Task InitializeAsync()
         {
             var options = Services.GetService<TermsDataOptions>();
             if (options == null)
@@ -55,8 +57,9 @@ namespace Typeahead.WebApi.IntTests
                 throw new NullReferenceException(nameof(options));
             }
 
-            var repository = new TestTermsRepository(options);
-            return await repository.GetWeight(termId, input);
+            _repository = new TestTermsRepository(options);
+
+            return Task.CompletedTask;
         }
 
         private async Task<HttpResponseMessage> PostAsJsonAsync(int termId, string input)

@@ -13,7 +13,7 @@ SELECT * FROM
 		ORDER BY w.[Count] DESC
 	) s
 
-	UNION 
+	UNION ALL
 	
 	(
 		SELECT TOP(5) ID, [Name] 
@@ -22,7 +22,7 @@ SELECT * FROM
 		ORDER BY [Name] ASC
 	)
 
-	UNION 
+	UNION ALL
 
 	(
 		SELECT TOP(20) ID, [Name] 

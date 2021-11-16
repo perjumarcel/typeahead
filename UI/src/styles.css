@@ -30,3 +30,7 @@
 #filter {
   width: 200px;
 }
+
+.highlight {
+  color: blue;
+}

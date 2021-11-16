@@ -8,6 +8,7 @@ import { TermService } from 'src/services/term.service';
 })
 export class AppComponent {
   public terms: Term[];
+  public filter: string;
 
   constructor(private _termService: TermService) {
   }
@@ -25,4 +26,13 @@ export class AppComponent {
   weightIncrease(term: Term) {
     this._termService.postWeightIncrease(term.id, 'mic').subscribe((data: any) => console.log(data));
   }
+
+  onKeyUp(event: any){
+    if(this.filter == event.target.value) {
+      return;
+    }
+
+    this.filter = event.target.value;
+  }
+
 }

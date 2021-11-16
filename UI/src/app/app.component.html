@@ -1,10 +1,12 @@
 <div class="content" role="main">
   <div id="wrapper">
-    <input type="text" name="filter" id="filter">
+    <input type="text" name="filter" id="filter"
+      value="{{filter}}"
+      (keyup)="onKeyUp($event)">
 
     <div class="search-options">
       <div class="search-option" hover-class="search-hover">
-        <div><strong>Mic</strong>rophone</div>
+        <div  innerHTML="{{'Microphone' | highlight: filter}}"></div>
       </div>
     </div>
   </div>

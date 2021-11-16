@@ -25,7 +25,7 @@ namespace Typeahead.WebApi
             services.AddScoped<TermsRepository>();
 
             var termDataOptions = new TermsDataOptions();
-            Configuration.GetSection("TermDataOptions").Bind(termDataOptions);
+            Configuration.GetSection("TermsDataOptions").Bind(termDataOptions);
             services.AddSingleton(termDataOptions);
         }
 

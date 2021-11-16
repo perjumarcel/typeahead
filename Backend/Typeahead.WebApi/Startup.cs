@@ -21,6 +21,15 @@ namespace Typeahead.WebApi
         {
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Typeahead.WebApi", Version = "v1" }); });
+            services.AddCors(
+                o => o.AddPolicy(
+                    "AllowCrossOriginRequests",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    }));
 
             services.AddScoped<TermsRepository>();
 
@@ -36,6 +45,7 @@ namespace Typeahead.WebApi
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Typeahead.WebApi v1"));
+                app.UseCors("AllowCrossOriginRequests");
             }
 
             app.UseHttpsRedirection();

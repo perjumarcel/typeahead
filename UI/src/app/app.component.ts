@@ -9,26 +9,36 @@ import { TermService } from 'src/services/term.service';
 export class AppComponent {
   public terms: Term[];
   public filter: string;
+  public selected: Term;
+  public isListVisible: Boolean;
 
   constructor(private _termService: TermService) {
   }
 
   getTerms(filter: string) {
-    if(filter.length < 3) {
+    if (filter.length < 3) {
       return;
     }
 
     this._termService.getTerms(filter).subscribe(
-      (data: Term[]) => this.terms = data
+      (data: Term[]) => {
+        this.terms = data;
+        this.selected = null;
+        this.setListVisibility(true);
+      },
+      (error: any) => {
+        this.setListVisibility(false);
+        this.clearTerms();
+      }
     );
   }
 
   weightIncrease(term: Term) {
-    this._termService.postWeightIncrease(term.id, 'mic').subscribe((data: any) => console.log(data));
+    this._termService.postWeightIncrease(term.id, this.filter).subscribe((data: any) => console.log(data));
   }
 
-  onKeyUp(event: any){
-    if(this.filter == event.target.value) {
+  onKeyUp(event: any) {
+    if (this.filter == event.target.value) {
       return;
     }
 
@@ -40,8 +50,26 @@ export class AppComponent {
     }
   }
 
-  clearTerms() {
-    this.terms = [];
+  onLostFocus(event: any) {
+    this.setListVisibility(false);
   }
 
+  onFocus(event: any) {
+    this.setListVisibility(true);
+  }
+
+  setListVisibility(isVisible: boolean) {
+    this.isListVisible = isVisible;
+  }
+
+  clearTerms() {
+    this.terms = [];
+    this.selected = null;
+  }
+
+  selectTerm(term: Term) {
+    this.selected = term;
+    this.weightIncrease(term);
+    this.filter = term.name;
+  }
 }

@@ -34,3 +34,17 @@
 .highlight {
   color: blue;
 }
+
+.fadeInOut {
+  transition-duration: 100ms, 100ms;
+  transition-property: visibility, opacity;
+  transition-delay: 0;
+}
+
+.fadeInOut.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: 100ms, 0;
+  transition-property: opacity, visibility;
+  transition-delay: 100ms, 100ms;
+}

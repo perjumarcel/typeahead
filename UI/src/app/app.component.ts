@@ -33,6 +33,15 @@ export class AppComponent {
     }
 
     this.filter = event.target.value;
+    if (this.filter.length > 2) {
+      this.getTerms(this.filter);
+    } else {
+      this.clearTerms();
+    }
+  }
+
+  clearTerms() {
+    this.terms = [];
   }
 
 }

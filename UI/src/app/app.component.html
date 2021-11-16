@@ -5,8 +5,8 @@
       (keyup)="onKeyUp($event)">
 
     <div class="search-options">
-      <div class="search-option" hover-class="search-hover">
-        <div  innerHTML="{{'Microphone' | highlight: filter}}"></div>
+      <div class="search-option" hover-class="search-hover" *ngFor="let term of terms">
+        <div  innerHTML="{{ term.name | highlight: filter}}"></div>
       </div>
     </div>
   </div>

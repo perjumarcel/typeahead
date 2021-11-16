@@ -49,6 +49,20 @@ namespace Typeahead.WebApi.IntTests
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
+        [Theory]
+        [InlineData(1, "asd")]
+        public async Task IncreaseWeightForTermWithNonContainingInputNoChange(int termId, string input)
+        {
+            var currentWeight = await _repository.GetWeight(termId, input);
+            var response = await PostAsJsonAsync(termId, input);
+
+            response.StatusCode.Should().Be(HttpStatusCode.NoContent);
+            var newWeight = await _repository.GetWeight(termId, input);
+
+            newWeight.Count.Should().Be(0);
+            newWeight.Count.Should().Be(currentWeight.Count);
+        }
+
         public override Task InitializeAsync()
         {
             var options = Services.GetService<TermsDataOptions>();

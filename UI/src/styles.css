@@ -1,0 +1,75 @@
+:host {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.search-options {
+  border: 1px solid #999;
+  background: #fff;
+  overflow: auto;
+  width: 204px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 200px;
+  scrollbar-width: thin;
+  scrollbar-color: #679267 #d1c3b3 ;
+}
+
+.search-options::-webkit-scrollbar {
+  width: 7px;
+}
+
+.search-options::-webkit-scrollbar-track {
+  background: #d1c3b3 ;
+}
+
+.search-options::-webkit-scrollbar-thumb {
+  background-color: #679267 ;
+  border-radius: 5px;
+  border: 2px solid #d1c3b3 ;
+}
+
+.search-option {
+  padding: 2px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+.search-options strong {
+  font-weight: normal;
+  color: #3399ff;
+}
+.search-hover {
+  background: #f0f0f0;
+}
+
+#filter {
+  width: 200px;
+}
+
+.highlight {
+  color: blue;
+}
+
+.fadeInOut {
+  transition-duration: 100ms, 100ms;
+  transition-property: visibility, opacity;
+  transition-delay: 0;
+}
+
+.fadeInOut.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: 100ms, 0;
+  transition-property: opacity, visibility;
+  transition-delay: 100ms, 100ms;
+}
+
+mark {
+  background-color: #67926744;
+}

@@ -1,0 +1,15 @@
+<div class="content" role="main">
+  <div id="wrapper">
+    <input type="text" name="filter" id="filter"
+      value="{{filter}}"
+      (keyup)="onKeyUp($event)"
+      (focus)="onFocus($event)"
+      (blur)="onLostFocus($event)">
+
+    <div class="search-options fadeInOut" [ngClass]="{'hidden': !isListVisible || selected != null || filter?.length < 3}">
+      <div class="search-option" hover-class="search-hover" *ngFor="let term of terms">
+        <div innerHTML="{{ term.name | highlight: filter}}" (click)="selectTerm(term)"></div>
+      </div>
+    </div>
+  </div>
+</div>

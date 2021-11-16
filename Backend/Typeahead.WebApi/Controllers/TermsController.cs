@@ -16,7 +16,7 @@ namespace Typeahead.WebApi.Controllers
         private readonly ILogger _logger;
         private readonly TermsRepository _repository;
 
-        public TermsController(ILogger logger, TermsRepository repository)
+        public TermsController(ILogger<TermsController> logger, TermsRepository repository)
         {
             _logger = logger;
             _repository = repository;

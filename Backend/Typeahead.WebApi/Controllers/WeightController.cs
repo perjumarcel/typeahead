@@ -16,7 +16,7 @@ namespace Typeahead.WebApi.Controllers
         private readonly ILogger _logger;
         private readonly TermsRepository _repository;
 
-        public WeightController(ILogger logger, TermsRepository repository)
+        public WeightController(ILogger<WeightController> logger, TermsRepository repository)
         {
             _logger = logger;
             _repository = repository;
